@@ -1,8 +1,8 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,rider
-# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudio,visualstudiocode,rider
+# Created by https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,jetbrains+all
+# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudio,visualstudiocode,jetbrains+all
 
-### Rider ###
+### JetBrains+all ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
@@ -74,6 +74,22 @@ fabric.properties
 
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
+
+### JetBrains+all Patch ###
+# Ignores the whole .idea folder and all .iml files
+# See https://github.com/joeblau/gitignore.io/issues/186 and https://github.com/joeblau/gitignore.io/issues/360
+
+.idea/
+
+# Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-249601023
+
+*.iml
+modules.xml
+.idea/misc.xml
+*.ipr
+
+# Sonarlint plugin
+.idea/sonarlint
 
 ### VisualStudioCode ###
 .vscode/*
@@ -441,4 +457,4 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-# End of https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,riderlll
+# End of https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,jetbrains+all
