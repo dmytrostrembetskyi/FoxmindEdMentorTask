@@ -1,12 +1,14 @@
-﻿using System;
+﻿using ConsoleApp.Services;
+using MaxSumLibrary.Services;
 
 namespace ConsoleApp
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var consoleService = new ConsoleService(new FileService(), new LineService());
+            consoleService.Run();
         }
     }
 }
