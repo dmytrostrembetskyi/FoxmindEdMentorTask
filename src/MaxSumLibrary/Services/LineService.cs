@@ -10,40 +10,46 @@ namespace MaxSumLibrary.Services
 {
     public class LineService : ILineService
     {
-        public List<LineModel> MapToModel(string[] lines)
+        public LineService()
         {
-            return lines.Select((line, index) => new LineModel(index, line)).ToList();
+            Lines = new List<LineModel>();
         }
 
-        public List<LineModel> FillAllInfo(List<LineModel> lines)
+        public List<LineModel> Lines { get; set; }
+
+        public void SetModels(string[] lines)
         {
-            FillIsValid(lines);
-            FillSeparatedValues(lines);
-            FillParsedValues(lines);
-            FillSum(lines);
-            return lines;
+            Lines = lines.Select((line, index) => new LineModel(index, line)).ToList();
         }
 
-        public void FillIsValid(List<LineModel> lines)
+        public void FillAllInfo()
+        {
+            FillIsValid();
+            FillSeparatedValues();
+            FillParsedValues();
+            FillSum();
+        }
+
+        public void FillIsValid()
         {
             var invalidLineRegex = @"[^,.\s\d]|[.]{2,}";
-            lines
+            Lines
                 .ToList()
                 .ForEach(line => line.IsValid = !Regex.Match(line.Source, invalidLineRegex).Success);
         }
 
-        public void FillSeparatedValues(List<LineModel> lines)
+        public void FillSeparatedValues()
         {
-            lines
+            Lines
                 .Where(line => line.IsValid)
                 .ToList()
                 .ForEach(line =>
                     line.SourceValues = line.Source.Split(",", StringSplitOptions.RemoveEmptyEntries).ToList());
         }
 
-        public void FillParsedValues(List<LineModel> lines)
+        public void FillParsedValues()
         {
-            lines
+            Lines
                 .Where(line => line.IsValid && line.SourceValues.Count > 0)
                 .ToList()
                 .ForEach(line => line.ParsedValues = line.SourceValues
@@ -51,22 +57,22 @@ namespace MaxSumLibrary.Services
                     .ToList());
         }
 
-        public void FillSum(List<LineModel> lines)
+        public void FillSum()
         {
-            lines
+            Lines
                 .Where(line => line.IsValid && line.ParsedValues.Count > 0)
                 .ToList()
                 .ForEach(line => line.Sum = line.ParsedValues.Sum());
         }
 
-        public int FindIndexWithMaxSum(List<LineModel> lines)
+        public int FindIndexWithMaxSum()
         {
-            return lines.OrderByDescending(line => line.Sum).First().Index;
+            return Lines.OrderByDescending(line => line.Sum).First().Index;
         }
 
-        public List<int> FindInvalidLineIndexes(List<LineModel> lines)
+        public List<int> FindIndexesWithInvalidLine()
         {
-            return lines.Where(line => !line.IsValid).Select(line => line.Index).ToList();
+            return Lines.Where(line => !line.IsValid).Select(line => line.Index).ToList();
         }
     }
 }

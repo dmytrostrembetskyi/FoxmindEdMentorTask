@@ -21,11 +21,11 @@ namespace ConsoleApp.Services
             _consoleService.PrintWelcome();
             var sourceFilePath = _consoleService.AskInputFile();
             var sourceLines = _fileService.Read(sourceFilePath);
-            var mappedLines = _lineService.MapToModel(sourceLines);
-            _consoleService.PrintInput(mappedLines);
-            var linesWithInfo = _lineService.FillAllInfo(mappedLines);
-            var indexWithMaxSum = _lineService.FindIndexWithMaxSum(linesWithInfo);
-            var invalidIndexes = _lineService.FindInvalidLineIndexes(linesWithInfo);
+            _lineService.SetModels(sourceLines);
+            _consoleService.PrintInput(_lineService.Lines);
+            _lineService.FillAllInfo();
+            var indexWithMaxSum = _lineService.FindIndexWithMaxSum();
+            var invalidIndexes = _lineService.FindIndexesWithInvalidLine();
             _consoleService.PrintResults(indexWithMaxSum, invalidIndexes);
         }
     }
