@@ -25,7 +25,7 @@ namespace MaxSumLibrary.Services
         public void FillAllInfo()
         {
             FillIsValid();
-            FillSeparatedValues();
+            FillSourceValues();
             FillParsedValues();
             FillSum();
         }
@@ -38,7 +38,7 @@ namespace MaxSumLibrary.Services
                 .ForEach(line => line.IsValid = !Regex.Match(line.Source, invalidLineRegex).Success);
         }
 
-        public void FillSeparatedValues()
+        public void FillSourceValues()
         {
             Lines
                 .Where(line => line.IsValid)

@@ -9,7 +9,7 @@ namespace MaxSumLibrary.Services.Abstract
         void InitLines(string[] lines);
         void FillAllInfo();
         void FillIsValid();
-        void FillSeparatedValues();
+        void FillSourceValues();
         void FillParsedValues();
         void FillSum();
         int FindIndexWithMaxSum();
