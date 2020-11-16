@@ -8,6 +8,6 @@ namespace ConsoleApp.Services.Abstract
         void PrintWelcome();
         string? AskInputFile();
         void PrintInput(List<LineModel> lines);
-        void PrintResults(int indexWithMaxSum, List<int> invalidIndexes);
+        void PrintResults(int indexWithMaxSum, List<int> indexesWithInvalidLine);
     }
 }

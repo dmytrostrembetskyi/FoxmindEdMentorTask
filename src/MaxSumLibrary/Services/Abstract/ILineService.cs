@@ -5,13 +5,14 @@ namespace MaxSumLibrary.Services.Abstract
 {
     public interface ILineService
     {
-        List<LineModel> MapToModel(string[] lines);
-        List<LineModel> FillAllInfo(List<LineModel> sourceLines);
-        void FillIsValid(List<LineModel> lines);
-        void FillSeparatedValues(List<LineModel> lines);
-        void FillParsedValues(List<LineModel> lines);
-        void FillSum(List<LineModel> lines);
-        int FindIndexWithMaxSum(List<LineModel> lines);
-        List<int> FindInvalidLineIndexes(List<LineModel> lines);
+        List<LineModel> Lines { get; set; }
+        void InitLines(string[] lines);
+        void FillAllInfo();
+        void FillIsValid();
+        void FillSeparatedValues();
+        void FillParsedValues();
+        void FillSum();
+        int FindIndexWithMaxSum();
+        List<int> FindIndexesWithInvalidLine();
     }
 }
