@@ -52,9 +52,10 @@ namespace MaxSumLibrary.Services
             Lines
                 .Where(line => line.IsValid && line.SourceValues.Count > 0)
                 .ToList()
-                .ForEach(line => line.ParsedValues = line.SourceValues
-                    .Select(s => decimal.Parse(s, NumberStyles.Any, CultureInfo.InvariantCulture))
-                    .ToList());
+                .ForEach(line => line.ParsedValues =
+                    line.SourceValues
+                        .Select(s => decimal.Parse(s, NumberStyles.Any, CultureInfo.InvariantCulture))
+                        .ToList());
         }
 
         public void FillSum()
