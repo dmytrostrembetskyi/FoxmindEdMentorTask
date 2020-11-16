@@ -7,7 +7,7 @@ namespace ConsoleApp
     {
         private static void Main(string[] args)
         {
-            var consoleService = new ConsoleService(new FileService(), new LineService());
+            var consoleService = new MainService(new FileService(), new LineService(), new ConsoleService());
             consoleService.Run();
         }
     }

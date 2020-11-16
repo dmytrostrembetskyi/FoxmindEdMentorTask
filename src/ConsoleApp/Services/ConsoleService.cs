@@ -1,41 +1,19 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using ConsoleApp.Services.Abstract;
 using MaxSumLibrary.Models;
-using MaxSumLibrary.Services.Abstract;
 
 namespace ConsoleApp.Services
 {
-    public class ConsoleService
+    public class ConsoleService : IConsoleService
     {
-        private readonly IFileService _fileService;
-        private readonly ILineService _lineService;
-
-        public ConsoleService(IFileService fileService, ILineService lineService)
-        {
-            _fileService = fileService;
-            _lineService = lineService;
-        }
-
-        public void Run()
-        {
-            PrintWelcome();
-            var sourceFilePath = AskInputFile();
-            var sourceLines = _fileService.Read(sourceFilePath);
-            var mappedLines = _lineService.MapToModel(sourceLines);
-            PrintInput(mappedLines);
-            var linesWithInfo = _lineService.FillAllInfo(mappedLines);
-            var indexWithMaxSum = _lineService.FindIndexWithMaxSum(linesWithInfo);
-            var invalidIndexes = _lineService.FindInvalidLineIndexes(linesWithInfo);
-            PrintResults(indexWithMaxSum, invalidIndexes);
-        }
-
-        private void PrintWelcome()
+        public void PrintWelcome()
         {
             Console.WriteLine("Greetings, my lord!");
         }
 
-        private string? AskInputFile()
+        public string? AskInputFile()
         {
             var path = "";
 
@@ -50,14 +28,14 @@ namespace ConsoleApp.Services
             return path;
         }
 
-        private void PrintInput(List<LineModel> lines)
+        public void PrintInput(List<LineModel> lines)
         {
             Console.WriteLine("Your input is:");
             lines.ForEach(Console.WriteLine);
             Console.WriteLine();
         }
 
-        private void PrintResults(int indexWithMaxSum, List<int> invalidIndexes)
+        public void PrintResults(int indexWithMaxSum, List<int> invalidIndexes)
         {
             Console.WriteLine("Results:");
             Console.WriteLine($"Line with max sum: {indexWithMaxSum}");
