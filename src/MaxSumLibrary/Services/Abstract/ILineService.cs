@@ -8,11 +8,7 @@ namespace MaxSumLibrary.Services.Abstract
         List<LineModel> Lines { get; set; }
         void InitLines(string[] lines);
         void FillAllInfo();
-        void FillIsValid();
-        void FillSourceValues();
-        void FillParsedValues();
-        void FillSum();
         int FindIndexWithMaxSum();
-        List<int> FindIndexesWithInvalidLine();
+        IEnumerable<int> FindIndexesWithInvalidLine();
     }
 }

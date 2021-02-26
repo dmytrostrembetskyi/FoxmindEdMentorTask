@@ -19,61 +19,29 @@ namespace MaxSumLibrary.Services
 
         public void InitLines(string[] lines)
         {
-            Lines = lines.Select((line, index) => new LineModel(index, line)).ToList();
+            Lines = lines
+                .Select((line, index) => new LineModel(index, line))
+                .ToList();
         }
 
         public void FillAllInfo()
         {
-            FillIsValid();
-            FillSourceValues();
-            FillParsedValues();
-            FillSum();
-        }
-
-        public void FillIsValid()
-        {
-            var invalidLineRegex = @"[^,.\s\d]|[.]{2,}";
-            Lines
-                .ToList()
-                .ForEach(line => line.IsValid = !Regex.Match(line.Source, invalidLineRegex).Success);
-        }
-
-        public void FillSourceValues()
-        {
-            Lines
-                .Where(line => line.IsValid)
-                .ToList()
-                .ForEach(line =>
-                    line.SourceValues = line.Source.Split(",", StringSplitOptions.RemoveEmptyEntries).ToList());
-        }
-
-        public void FillParsedValues()
-        {
-            Lines
-                .Where(line => line.IsValid && line.SourceValues.Count > 0)
-                .ToList()
-                .ForEach(line => line.ParsedValues =
-                    line.SourceValues
-                        .Select(s => decimal.Parse(s, NumberStyles.Any, CultureInfo.InvariantCulture))
-                        .ToList());
-        }
-
-        public void FillSum()
-        {
-            Lines
-                .Where(line => line.IsValid && line.ParsedValues.Count > 0)
-                .ToList()
-                .ForEach(line => line.Sum = line.ParsedValues.Sum());
+            Lines.ForEach(line => line.FillAllInfo());
         }
 
         public int FindIndexWithMaxSum()
         {
-            return Lines.OrderByDescending(line => line.Sum).First().Index;
+            return Lines
+                .OrderByDescending(line => line.Sum)
+                .First()
+                .Index;
         }
 
-        public List<int> FindIndexesWithInvalidLine()
+        public IEnumerable<int> FindIndexesWithInvalidLine()
         {
-            return Lines.Where(line => !line.IsValid).Select(line => line.Index).ToList();
+            return Lines
+                .Where(line => !line.IsValid)
+                .Select(line => line.Index);
         }
     }
 }

@@ -35,10 +35,10 @@ namespace ConsoleApp.Services
             Console.WriteLine();
         }
 
-        public void PrintResults(int indexWithMaxSum, List<int> indexesWithInvalidLine)
+        public void PrintResults(int indexWithMaxSum, IEnumerable<int> indexesWithInvalidLine)
         {
             Console.WriteLine("Results:");
-            Console.WriteLine($"Line with max sum: {indexWithMaxSum}");
+            Console.WriteLine($"Line index with max sum: {indexWithMaxSum}");
             Console.WriteLine($"Invalid lines: {string.Join(", ", indexesWithInvalidLine)}");
         }
     }
