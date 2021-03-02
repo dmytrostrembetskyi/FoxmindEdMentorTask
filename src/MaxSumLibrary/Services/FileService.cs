@@ -14,7 +14,7 @@ namespace MaxSumLibrary.Services
         public string GetDefaultFilePath()
         {
             var fileName = "source.txt";
-            var sourceFilePath = Path.Combine("..", "..", "..", "..", "..", fileName);
+            var sourceFilePath = Path.Combine("data", fileName);
             return sourceFilePath;
         }
     }

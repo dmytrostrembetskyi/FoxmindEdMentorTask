@@ -11,4 +11,10 @@
       <ProjectReference Include="..\MaxSumLibrary\MaxSumLibrary.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="data\source.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
